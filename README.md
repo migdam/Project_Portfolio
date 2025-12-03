@@ -56,6 +56,39 @@
 
 ---
 
+## 📊 Visual Analytics
+
+<div align="center">
+
+### 🎯 Project Risk Analysis
+<img src="assets/charts/risk-analysis.png" alt="Risk Analysis" width="800">
+
+*Real-time risk assessment across project portfolio with budget impact analysis*
+
+### 💰 Cost Overrun Predictions
+<img src="assets/charts/cost-overrun.png" alt="Cost Overrun" width="800">
+
+*ML-powered cost overrun forecasting with confidence intervals*
+
+### ✅ Success Likelihood Model
+<img src="assets/charts/success-likelihood.png" alt="Success Likelihood" width="800">
+
+*Project success probability analysis based on team experience and duration*
+
+### 🎯 Portfolio Optimization
+<img src="assets/charts/portfolio-optimization.png" alt="Portfolio Optimization" width="800">
+
+*Pareto frontier visualization for optimal project selection*
+
+### 📈 Model Performance Dashboard
+<img src="assets/charts/model-performance.png" alt="Model Performance" width="800">
+
+*Live performance metrics across all ML models*
+
+</div>
+
+---
+
 ## 🌟 Features
 
 <table>
