@@ -1,17 +1,76 @@
-# Portfolio ML - AI-Powered Project & Portfolio Machine Learning Models
+<div align="center">
 
-ML models that enhance Portfolio Prioritization, Project Risk Detection, and Outcome Predictability for Project Portfolio Management (PPM).
+# 🎯 Portfolio ML
+### AI-Powered Project & Portfolio Machine Learning Models
 
-## Features
+[![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.109+-green.svg)](https://fastapi.tiangolo.com/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![CI/CD](https://img.shields.io/badge/CI/CD-GitHub_Actions-blue.svg)](.github/workflows/ci.yml)
+[![MLOps](https://img.shields.io/badge/MLOps-MLflow-orange.svg)](https://mlflow.org/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-- **Project Risk Model (PRM)** - Predicts schedule slippage, budget overruns, and resource bottlenecks
-- **Cost Overrun Predictor (COP)** - Forecasts probability and magnitude of cost overruns
-- **Success Likelihood Model (SLM)** - Estimates project success probability
-- **Portfolio Optimizer (PO)** - Recommends optimal project portfolio selection
+**Predictive analytics for Project Portfolio Management (PPM) powered by Machine Learning**
 
-## Quick Start
+[Features](#-features) • [Quick Start](#-quick-start) • [API](#-api) • [Dashboard](#-dashboard) • [Architecture](docs/ARCHITECTURE.md)
 
-### Setup
+</div>
+
+---
+
+## 🌟 Features
+
+<table>
+<tr>
+<td width="50%">
+
+### 🤖 **4 Core ML Models**
+
+- 🎲 **Project Risk Model (PRM)**
+  - Predicts schedule slippage
+  - Budget overrun detection
+  - Resource bottleneck forecasting
+
+- 💰 **Cost Overrun Predictor (COP)**
+  - Cost overrun probability
+  - Magnitude forecasting
+  - Financial risk assessment
+
+</td>
+<td width="50%">
+
+### 📊 **Advanced Analytics**
+
+- ✅ **Success Likelihood Model (SLM)**
+  - Project success probability
+  - Historical pattern analysis
+  - Outcome prediction
+
+- 🎯 **Portfolio Optimizer (PO)**
+  - Optimal project selection
+  - Resource allocation
+  - Value maximization
+
+</td>
+</tr>
+</table>
+
+## 📈 Performance Metrics
+
+<div align="center">
+
+| Metric | Target | Impact |
+|--------|--------|--------|
+| 🎯 **Investment Accuracy** | +25% | Better project selection |
+| ⚡ **Risk Detection** | -40% lead time | Earlier intervention |
+| 📊 **Portfolio Throughput** | +15% | More projects delivered |
+| 💎 **Value/Cost Ratio** | +10-20% | Optimized spending |
+
+</div>
+
+## 🚀 Quick Start
+
+### 📦 Setup
 
 ```bash
 # Create and activate conda environment
@@ -22,7 +81,7 @@ conda activate project_portfolio
 ./run.sh setup
 ```
 
-### Training Models
+### 🎓 Training Models
 
 ```bash
 # Train Project Risk Model
@@ -35,64 +94,129 @@ conda activate project_portfolio
 ./run.sh train slm data/processed/projects.csv
 ```
 
-### Running Tests
+### ✅ Running Tests
 
 ```bash
 ./run.sh test
 ```
 
-### Deployment
+### 🐳 Deployment
 
+<table>
+<tr>
+<td>
+
+**Docker Compose** (Recommended)
 ```bash
-# Build and run with Docker Compose
 docker-compose up
-
-# Access MLflow UI
-open http://localhost:5000
-
-# Access API
-open http://localhost:8000/docs
 ```
 
-## Project Structure
+</td>
+<td>
+
+**Access Points**
+- 🌐 API: http://localhost:8000/docs
+- 📊 MLflow: http://localhost:5000
+- 🎨 Dashboard: http://localhost:8501
+
+</td>
+</tr>
+</table>
+
+## 📂 Project Structure
 
 ```
-├── config/             # Configuration files
-├── data/              # Data directories (raw, processed, validated)
-├── models/            # ML model implementations
-│   ├── prm.py        # Project Risk Model
-│   ├── cop.py        # Cost Overrun Predictor
-│   ├── slm.py        # Success Likelihood Model
-│   └── po.py         # Portfolio Optimizer
-├── pipeline/          # Data pipeline (ingestion, preprocessing, validation)
-├── monitoring/        # MLOps monitoring (drift detection, health checks)
-├── utils/             # Utility functions
-├── tests/             # Test suite
-└── run.sh            # Automation script
+📦 Portfolio ML
+├── 🤖 models/              # ML Models
+│   ├── prm.py             # 🎲 Project Risk Model
+│   ├── cop.py             # 💰 Cost Overrun Predictor  
+│   ├── slm.py             # ✅ Success Likelihood Model
+│   └── po.py              # 🎯 Portfolio Optimizer
+├── 🔄 pipeline/            # Data Pipeline
+│   ├── ingestion.py       # Data extraction
+│   ├── preprocessing.py   # Feature engineering
+│   └── validation.py      # Quality checks
+├── 📊 monitoring/          # MLOps & Monitoring
+│   ├── drift_detection.py
+│   └── health_check.py
+├── 🌐 api/                 # REST API
+│   └── server.py          # FastAPI endpoints
+├── 🎨 enhancements/        # Advanced Features
+│   ├── dashboard_app.py   # Streamlit dashboard
+│   ├── explainability/    # SHAP explanations
+│   ├── visualizations.py  # Portfolio charts
+│   └── batch_predictions.py
+├── ⚙️ scheduler/           # Auto-retraining
+├── 🧪 tests/              # Test suite
+├── ⚡ run.sh              # CLI automation
+└── 🐳 Dockerfile          # Containerization
 ```
 
-## Data Requirements
+## 🎁 Enhanced Features (20+)
 
-- **Minimum historical data**: 2-3 years of project delivery data
-- **Completeness threshold**: ≥85% for schedule and cost fields
-- **Required data sources**:
-  - PPM Tool (milestones, gates, scope changes, statuses)
-  - Finance systems (budgets, actuals, NPV)
-  - HR/Resource systems (capabilities, utilization)
-  - Risk/issue logs
+<details>
+<summary><b>🔍 Click to expand full feature list</b></summary>
 
-## Development
+### Core ML & MLOps
+- ✅ SHAP Explainability (waterfall & summary plots)
+- ✅ FastAPI REST API with Swagger docs
+- ✅ GitHub Actions CI/CD pipeline
+- ✅ Automated 90-day retraining scheduler
+- ✅ Optuna hyperparameter tuning
 
+### Data & Analytics
+- ✅ Synthetic data generator
+- ✅ Batch prediction pipeline
+- ✅ Audit logging for compliance
+- ✅ Advanced visualizations (Pareto, risk matrix)
+- ✅ Interactive Streamlit dashboard
+
+### Production & Monitoring
+- ✅ Email/Slack alerts
+- ✅ Model registry & versioning
+- ✅ Ensemble models with uncertainty
+- ✅ DVC data versioning
+- ✅ A/B testing framework
+- ✅ Real-time performance monitoring
+- ✅ Feature importance tracking
+- ✅ Confidence intervals
+- ✅ Feature store
+- ✅ Model comparison tools
+
+</details>
+
+## 🛠️ Development
+
+<table>
+<tr>
+<td>
+
+**Code Quality**
 ```bash
-# Format code
 ./run.sh format
-
-# Run linters
 ./run.sh lint
+```
 
-# Check model health
+</td>
+<td>
+
+**Testing**
+```bash
+./run.sh test
+pytest tests/ -v
+```
+
+</td>
+<td>
+
+**Monitoring**
+```bash
 ./run.sh monitor
 ```
+
+</td>
+</tr>
+</table>
 
 ## 🌐 API
 
@@ -153,9 +277,19 @@ streamlit run enhancements/dashboard_app.py
 
 </div>
 
+## 📚 Data Requirements
+
+- **Minimum historical data**: 2-3 years of project delivery data
+- **Completeness threshold**: ≥85% for schedule and cost fields
+- **Required data sources**:
+  - PPM Tool (milestones, gates, scope changes, statuses)
+  - Finance systems (budgets, actuals, NPV)
+  - HR/Resource systems (capabilities, utilization)
+  - Risk/issue logs
+
 ## 🤝 Contributing
 
-Contributions welcome! Please read our contributing guidelines.
+Contributions welcome! Please read our [contributing guidelines](docs/CONTRIBUTING.md).
 
 ## 📄 License
 
@@ -173,6 +307,6 @@ MIT License - See PRD for project details and requirements.
 
 **⭐ Star this repo if you find it useful!**
 
-[Report Bug](https://github.com/migdam/Project_Portfolio/issues) • [Request Feature](https://github.com/migdam/Project_Portfolio/issues)
+[Report Bug](https://github.com/migdam/Project_Portfolio/issues) • [Request Feature](https://github.com/migdam/Project_Portfolio/issues) • [View Docs](docs/ARCHITECTURE.md)
 
 </div>
