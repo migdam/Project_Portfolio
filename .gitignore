@@ -81,3 +81,4 @@ htmlcov/
 # Docker
 *.dockerfile.swp
 docker-compose.override.yml
+*.db
