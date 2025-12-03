@@ -94,13 +94,85 @@ open http://localhost:8000/docs
 ./run.sh monitor
 ```
 
-## Model Performance Targets
+## 🌐 API
 
-- Investment decision accuracy: +25%
-- Risk detection lead time: -40%
-- Portfolio throughput: +15%
-- Value/cost ratio: +10-20%
+**FastAPI Endpoints:**
 
-## License
+```python
+POST /predict/risk          # Risk predictions
+POST /predict/cost          # Cost overrun forecasts
+POST /predict/success       # Success probability
+POST /optimize/portfolio    # Portfolio optimization
+GET  /models/{name}/info    # Model information
+GET  /health                # Health check
+```
 
-See PRD for project details and requirements.
+**Interactive Docs**: http://localhost:8000/docs
+
+## 🎨 Dashboard
+
+**Streamlit App:**
+```bash
+streamlit run enhancements/dashboard_app.py
+```
+
+**Features:**
+- 📊 Real-time predictions
+- 📈 Portfolio visualizations
+- 🎯 Risk matrices
+- 📉 Pareto frontiers
+- 🔍 SHAP explanations
+
+## 🛠️ Technology Stack
+
+<div align="center">
+
+| Category | Technologies |
+|----------|-------------|
+| **ML/AI** | scikit-learn • XGBoost • LightGBM • TensorFlow • SHAP |
+| **MLOps** | MLflow • Optuna • DVC |
+| **API** | FastAPI • Pydantic • Uvicorn |
+| **Data** | pandas • NumPy • SQLAlchemy |
+| **Viz** | Plotly • Streamlit • Matplotlib |
+| **DevOps** | Docker • GitHub Actions • pytest |
+
+</div>
+
+## 📊 Model Performance Targets
+
+<div align="center">
+
+```
+┌─────────────────────────────────────────────┐
+│  📈 Investment Accuracy      ▲ 25%         │
+│  ⚡ Risk Detection Time      ▼ 40%         │
+│  📊 Portfolio Throughput     ▲ 15%         │
+│  💎 Value/Cost Ratio         ▲ 10-20%      │
+└─────────────────────────────────────────────┘
+```
+
+</div>
+
+## 🤝 Contributing
+
+Contributions welcome! Please read our contributing guidelines.
+
+## 📄 License
+
+MIT License - See PRD for project details and requirements.
+
+## 🙏 Acknowledgments
+
+- Built with modern MLOps best practices
+- Follows PMI standards for PPM
+- Designed for production deployment
+
+---
+
+<div align="center">
+
+**⭐ Star this repo if you find it useful!**
+
+[Report Bug](https://github.com/migdam/Project_Portfolio/issues) • [Request Feature](https://github.com/migdam/Project_Portfolio/issues)
+
+</div>
