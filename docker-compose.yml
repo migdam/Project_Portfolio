@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  portfolio-ml:
+    build: .
+    container_name: portfolio-ml
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./logs:/app/logs
+      - ./mlruns:/app/mlruns
+    environment:
+      - ENVIRONMENT=development
+      - LOG_LEVEL=INFO
+    command: python -m api.server
+    restart: unless-stopped
+
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:latest
+    container_name: portfolio-mlflow
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./mlruns:/mlflow/mlruns
+      - ./mlartifacts:/mlflow/mlartifacts
+    command: mlflow server --host 0.0.0.0 --port 5000 --backend-store-uri /mlflow/mlruns --default-artifact-root /mlflow/mlartifacts
+    restart: unless-stopped

@@ -1,0 +1,85 @@
+project:
+  name: "Portfolio ML"
+  version: "0.1.0"
+
+data:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  validated_dir: "data/validated"
+  min_historical_years: 2
+  completeness_threshold: 0.85
+
+models:
+  prm:
+    name: "Project Risk Model"
+    type: "classification"
+    output_classes: ["low", "medium", "high", "critical"]
+    features:
+      - scope_change_frequency
+      - milestone_variance
+      - team_experience_score
+      - dependency_count
+      - vendor_risk_score
+      - budget_utilization
+      - phase_duration
+    
+  cop:
+    name: "Cost Overrun Predictor"
+    type: "regression"
+    features:
+      - historical_spend_rate
+      - ev_pv_ratio
+      - burn_rate_variance
+      - resource_cost_variance
+      - milestone_slippage_days
+      - scope_changes_count
+    
+  slm:
+    name: "Success Likelihood Model"
+    type: "classification"
+    features:
+      - business_case_score
+      - strategic_alignment_score
+      - operational_readiness_score
+      - stakeholder_engagement_score
+      - dependency_risk_score
+      - team_capability_score
+      - historical_similar_success_rate
+    
+  po:
+    name: "Portfolio Optimizer"
+    type: "optimization"
+    features:
+      - project_npv
+      - resource_requirements
+      - strategic_value_score
+      - risk_score
+      - dependency_complexity
+
+training:
+  test_size: 0.2
+  validation_size: 0.1
+  cv_folds: 5
+  random_state: 42
+  early_stopping_rounds: 50
+
+monitoring:
+  drift_detection_threshold: 0.05
+  min_prediction_confidence: 0.6
+  retraining_schedule_days: 90
+  performance_degradation_threshold: 0.05
+
+mlflow:
+  tracking_uri: "mlruns"
+  experiment_name: "portfolio_ml"
+  artifact_location: "mlartifacts"
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+  reload: false
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/portfolio_ml.log"
