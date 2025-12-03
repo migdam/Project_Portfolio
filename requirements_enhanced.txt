@@ -1,0 +1,10 @@
+# Enhanced requirements with all new dependencies
+
+# Original dependencies
+-r requirements.txt
+
+# Additional enhancements
+optuna>=3.5.0
+streamlit>=1.29.0
+dvc>=3.37.0
+scipy>=1.11.0
