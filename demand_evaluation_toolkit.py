@@ -14,12 +14,13 @@ Author: Portfolio ML
 Version: 1.0.0
 """
 
-from typing import Dict, Optional
+from typing import Dict, Optional, List
 from demand_classifier import DemandClassifier
 from strategic_alignment import StrategicAlignmentScorer
 from roi_calculator import ROICalculator
 from missing_data_handler import MissingDataHandler
 from database import PortfolioDB
+from demand_optimizer import DemandOptimizer
 
 
 class DemandEvaluationToolkit:
@@ -50,6 +51,7 @@ class DemandEvaluationToolkit:
         
         self.db = PortfolioDB(db_path)
         self.quality_handler = MissingDataHandler(self.db)
+        self.optimizer = DemandOptimizer()
         
         # Routing thresholds (configurable)
         self.thresholds = {
@@ -411,6 +413,41 @@ class DemandEvaluationToolkit:
             'avg_priority_score': avg_priority,
             'avg_alignment_score': avg_alignment
         }
+    
+    def optimize_portfolio(
+        self,
+        approved_demands: List[Dict],
+        constraints: Dict,
+        objective: str = 'balanced',
+        weights: Optional[Dict] = None
+    ) -> Dict:
+        """
+        Optimize portfolio selection from approved demands using Linear Programming
+        
+        Args:
+            approved_demands: List of approved demand evaluation results
+            constraints: Resource constraints dictionary:
+                - total_budget: Maximum budget ($)
+                - max_concurrent_projects: Max number of projects
+                - max_avg_risk: Maximum average risk score
+                - resource_capacity: Dict of {skill: FTE_capacity}
+            objective: Optimization objective
+                - 'maximize_npv': Maximize total NPV
+                - 'maximize_strategic': Maximize strategic alignment
+                - 'balanced': Weighted combination (default)
+            weights: Optional weights for balanced objective
+                - npv_weight: Weight for NPV (default 0.6)
+                - strategic_weight: Weight for strategic value (default 0.4)
+        
+        Returns:
+            Optimization results with selected projects and metrics
+        """
+        return self.optimizer.optimize(
+            approved_demands=approved_demands,
+            constraints=constraints,
+            objective=objective,
+            weights=weights
+        )
 
 
 def main():
