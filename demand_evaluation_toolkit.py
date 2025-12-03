@@ -215,20 +215,22 @@ class DemandEvaluationToolkit:
         alignment = self.alignment_scorer.score_project(idea_data)
         
         if alignment['alignment_score'] < self.thresholds['min_alignment']:
+            strategic_fit = alignment.get('strategic_fit', {})
             return {
                 'routing': 'REJECT',
                 'reason': f"Poor strategic fit (score: {alignment['alignment_score']:.0f}/100)",
                 'alignment_score': alignment['alignment_score'],
                 'alignment_level': alignment['alignment_level'],
-                'weak_pillars': alignment['weak_pillars']
+                'weak_pillars': strategic_fit.get('weak_pillars', [])
             }
         
+        strategic_fit = alignment.get('strategic_fit', {})
         return {
             'routing': 'PASS',
             'alignment_score': alignment['alignment_score'],
             'alignment_level': alignment['alignment_level'],
-            'strong_pillars': alignment['strong_pillars'],
-            'weak_pillars': alignment['weak_pillars'],
+            'strong_pillars': strategic_fit.get('strong_pillars', []),
+            'weak_pillars': strategic_fit.get('weak_pillars', []),
             'recommendations': alignment['recommendations']
         }
     
@@ -245,7 +247,7 @@ class DemandEvaluationToolkit:
                 'reason': f"Financially unviable (ROI: {metrics['risk_adjusted_roi_pct']:.1f}%)",
                 'roi': metrics['risk_adjusted_roi_pct'],
                 'payback_period': metrics['payback_period_years'],
-                'npv': metrics['npv_dollars'],
+                'npv': metrics['npv'],
                 'viability_level': viability['viability_level']
             }
         
@@ -253,9 +255,9 @@ class DemandEvaluationToolkit:
             'routing': 'PASS',
             'roi': metrics['risk_adjusted_roi_pct'],
             'payback_period': metrics['payback_period_years'],
-            'npv': metrics['npv_dollars'],
+            'npv': metrics['npv'],
             'viability_level': viability['viability_level'],
-            'viability_score': viability['viability_score']
+            'viability_score': viability['overall_score']
         }
     
     def _assess_risk(self, idea_data: Dict) -> Dict:

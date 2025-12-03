@@ -163,13 +163,16 @@ class ROICalculator:
             return float('inf')
         return cost / annual_benefit
     
-    def _calculate_npv(self, cost: float, annual_benefit: float, years: int) -> float:
+    def _calculate_npv(self, cost: float, annual_benefit: float, years: float) -> float:
         """Calculate Net Present Value"""
         # Initial investment (negative cash flow)
         npv = -cost
         
+        # Convert years to int for range
+        years_int = int(years)
+        
         # Add discounted benefits
-        for year in range(1, years + 1):
+        for year in range(1, years_int + 1):
             discounted_benefit = annual_benefit / ((1 + self.discount_rate) ** year)
             npv += discounted_benefit
         
