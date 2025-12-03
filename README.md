@@ -12,7 +12,7 @@
 
 **Predictive analytics for Project Portfolio Management (PPM) powered by Machine Learning**
 
-[Features](#-features) • [Quick Start](#-quick-start) • [API](#-api) • [Dashboard](#-dashboard) • [Screenshots](#-screenshots) • [Architecture](docs/ARCHITECTURE.md)
+[Features](#-features) • [Quick Start](#-quick-start) • [API](#-api) • [Dashboard](#-dashboard) • [Business Guide](docs/BUSINESS_IMPLEMENTATION.md) • [Architecture](docs/ARCHITECTURE.md)
 
 </div>
 
@@ -51,6 +51,84 @@
 <img src="assets/screenshots/dashboard-full.png" alt="Full Dashboard" width="800">
 
 *Complete dashboard view with metrics, charts, and performance trends*
+
+</div>
+
+---
+
+## 💼 Business Integration
+
+<div align="center">
+
+### 🎯 Embedding ML into Your PPM Process
+
+**[View Complete Business Implementation Guide →](docs/BUSINESS_IMPLEMENTATION.md)**
+
+</div>
+
+<table>
+<tr>
+<td width="50%">
+
+### 📊 Required Data Inputs
+
+**From PPM System:**
+- Project master data (ID, dates, status)
+- Schedule & milestones
+- Risk & issue logs
+- Scope changes
+
+**From Finance System:**
+- Budgets (baseline & current)
+- Actual spend
+- NPV/ROI metrics
+
+**From HR/Resource System:**
+- Team size & composition
+- Experience levels
+- Utilization rates
+
+</td>
+<td width="50%">
+
+### 🚨 Decision Framework
+
+**Risk Score 61-80 (HIGH):**
+- Weekly executive reviews
+- Formal mitigation plans
+- Resource intervention
+
+**Cost Overrun >15%:**
+- Validate business case
+- Scope reduction analysis
+- Go/No-go decision
+
+**Success Probability <50%:**
+- Immediate pause/review
+- Recovery plan
+- Consider restructuring
+
+**Portfolio Optimization:**
+- Quarterly rebalancing
+- Start/stop/defer decisions
+- Resource reallocation
+
+</td>
+</tr>
+</table>
+
+### 📈 Integration Points
+
+<div align="center">
+
+| Governance Process | ML Integration | Frequency |
+|--------------------|----------------|----------|
+| **Monthly Steering** | Portfolio health dashboard, top 10 risks, optimization review | Monthly |
+| **Gate Reviews** | Run all 4 models, review predictions, apply decision criteria | Per gate |
+| **Weekly PMO** | Review high-risk projects (PRM >60), verify mitigation actions | Weekly |
+| **Quarterly Planning** | Portfolio rebalancing, optimal project selection | Quarterly |
+
+**📄 [Download Complete Guide with Use Cases & KPIs](docs/BUSINESS_IMPLEMENTATION.md)**
 
 </div>
 
