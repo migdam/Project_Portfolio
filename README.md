@@ -22,33 +22,35 @@
 
 <div align="center">
 
-### 🎨 Dashboard Interface
+### 🎨 Dashboard Interface - Risk Analysis
 
-<!-- Add your dashboard screenshot here -->
-<img src="https://via.placeholder.com/800x500/4CAF50/FFFFFF?text=Interactive+Dashboard+-+Coming+Soon" alt="Dashboard" width="800">
+<img src="assets/screenshots/dashboard-risk-tab.png" alt="Dashboard Risk Tab" width="800">
 
-*Interactive Streamlit dashboard with real-time predictions and visualizations*
+*Interactive Streamlit dashboard with real-time risk predictions, scatter plots, and data tables*
 
 ### 🌐 API Documentation
 
-<!-- Add your API docs screenshot here -->
-<img src="https://via.placeholder.com/800x500/2196F3/FFFFFF?text=FastAPI+Swagger+UI+-+Coming+Soon" alt="API" width="800">
+<img src="assets/screenshots/api-swagger.png" alt="FastAPI Swagger UI" width="800">
 
-*FastAPI interactive documentation with Swagger UI*
+*FastAPI interactive documentation with all endpoints, request/response schemas, and try-it-out functionality*
 
-### 📊 Portfolio Visualization
+### 💰 Cost Overrun Predictions
 
-<!-- Add your visualization screenshot here -->
-<img src="https://via.placeholder.com/800x500/FF9800/FFFFFF?text=Portfolio+Charts+-+Coming+Soon" alt="Visualizations" width="800">
+<img src="assets/screenshots/dashboard-cost-tab.png" alt="Cost Predictions" width="800">
 
-*Advanced portfolio analytics with Pareto frontiers and risk matrices*
+*Cost overrun predictions with bar charts and budget vs predicted cost analysis*
 
-### 🔍 SHAP Explainability
+### 🎯 Portfolio Optimizer - Pareto Frontier
 
-<!-- Add your SHAP screenshot here -->
-<img src="https://via.placeholder.com/800x500/9C27B0/FFFFFF?text=SHAP+Explanations+-+Coming+Soon" alt="SHAP" width="800">
+<img src="assets/screenshots/portfolio-map.png" alt="Portfolio Optimization" width="800">
 
-*Model interpretability with SHAP waterfall and summary plots*
+*Portfolio optimization with Pareto frontier visualization showing optimal project selection*
+
+### 📊 Full Dashboard Overview
+
+<img src="assets/screenshots/dashboard-full.png" alt="Full Dashboard" width="800">
+
+*Complete dashboard view with metrics, charts, and performance trends*
 
 </div>
 
