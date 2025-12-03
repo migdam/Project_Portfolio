@@ -39,13 +39,19 @@ class PortfolioAgent:
     - Human-in-the-loop escalation
     """
     
-    def __init__(self, api_key: str = None, db_path: str = "portfolio_predictions.db"):
+    def __init__(self, api_key: str = None, db_path: str = "portfolio_predictions.db", use_llm: bool = True):
         self.db = PortfolioDB(db_path)
-        self.llm = ChatOpenAI(
-            model="gpt-4",
-            temperature=0.1,
-            api_key=api_key
-        ) if api_key else None
+        self.use_llm = use_llm and api_key is not None
+        
+        if self.use_llm:
+            self.llm = ChatOpenAI(
+                model="gpt-4",
+                temperature=0.1,
+                api_key=api_key
+            )
+        else:
+            self.llm = None
+            
         self.graph = self._build_graph()
     
     def _build_graph(self) -> StateGraph:
@@ -142,35 +148,68 @@ class PortfolioAgent:
     
     def detect_risks(self, state: AgentState) -> AgentState:
         """
-        Step 2: Detect risks using pattern analysis
+        Step 2: Detect risks using pattern analysis with LLM reasoning
         """
         project_data = state["project_data"]
         
-        # Simulate risk detection (in production, call actual ML model)
+        # Get base risk score from historical data
         risk_score = int(project_data.get("avg_risk", 50) + np.random.randint(-10, 10))
         
         # Pattern detection
         patterns_detected = []
-        
         if project_data.get("risk_trend") == "increasing":
             patterns_detected.append("Risk score trending upward")
-        
         if project_data.get("risk_volatility", 0) > 15:
             patterns_detected.append("High risk volatility detected")
         
-        # Risk factors
-        risk_factors = []
-        if risk_score > 70:
-            risk_factors.append("Team capacity issues")
-            risk_factors.append("Budget constraints")
-        if risk_score > 50:
-            risk_factors.append("Timeline pressure")
+        # Use LLM for deep reasoning about risk factors
+        if self.use_llm and self.llm:
+            risk_prompt = ChatPromptTemplate.from_messages([
+                ("system", "You are an expert project risk analyst. Analyze the project data and identify specific risk factors and their root causes."),
+                ("human", """Project: {project_id}
+Risk Score: {risk_score}/100
+Trend: {risk_trend}
+Volatility: {risk_volatility}
+Patterns: {patterns}
+
+Provide a detailed risk analysis with:
+1. Top 3 specific risk factors
+2. Root causes for each factor
+3. Likelihood of each risk materializing
+
+Respond in JSON format: {{"risk_factors": [{{"factor": "...", "root_cause": "...", "likelihood": "HIGH/MEDIUM/LOW"}}], "overall_assessment": "..."}}""")
+            ])
+            
+            try:
+                response = self.llm.invoke(
+                    risk_prompt.format_messages(
+                        project_id=state["project_id"],
+                        risk_score=risk_score,
+                        risk_trend=project_data.get("risk_trend", "unknown"),
+                        risk_volatility=project_data.get("risk_volatility", 0),
+                        patterns=", ".join(patterns_detected) if patterns_detected else "No patterns detected"
+                    )
+                )
+                
+                llm_analysis = json.loads(response.content)
+                risk_factors = [f"{rf['factor']} (Cause: {rf['root_cause']}, Likelihood: {rf['likelihood']})" 
+                               for rf in llm_analysis.get("risk_factors", [])]
+                llm_assessment = llm_analysis.get("overall_assessment", "")
+            except Exception as e:
+                # Fallback to rule-based
+                risk_factors = self._get_rule_based_risk_factors(risk_score)
+                llm_assessment = "LLM analysis unavailable"
+        else:
+            # Rule-based fallback
+            risk_factors = self._get_rule_based_risk_factors(risk_score)
+            llm_assessment = "Using rule-based analysis"
         
         risk_analysis = {
             "risk_score": risk_score,
             "risk_level": "CRITICAL" if risk_score > 80 else "HIGH" if risk_score > 60 else "MEDIUM" if risk_score > 40 else "LOW",
             "patterns_detected": patterns_detected,
             "risk_factors": risk_factors,
+            "llm_assessment": llm_assessment,
             "confidence": 0.85
         }
         
@@ -180,6 +219,16 @@ class PortfolioAgent:
         state["messages"] = state.get("messages", []) + [message]
         
         return state
+    
+    def _get_rule_based_risk_factors(self, risk_score: int) -> list:
+        """Fallback rule-based risk factor detection"""
+        risk_factors = []
+        if risk_score > 70:
+            risk_factors.append("Team capacity issues")
+            risk_factors.append("Budget constraints")
+        if risk_score > 50:
+            risk_factors.append("Timeline pressure")
+        return risk_factors
     
     def predict_costs(self, state: AgentState) -> AgentState:
         """
@@ -215,11 +264,58 @@ class PortfolioAgent:
     
     def generate_recommendations(self, state: AgentState) -> AgentState:
         """
-        Step 4: Generate actionable recommendations
+        Step 4: Generate actionable recommendations with LLM reasoning
         """
         risk_score = state["risk_analysis"]["risk_score"]
         cost_overrun = state["cost_analysis"]["predicted_overrun"]
         
+        # Use LLM for intelligent recommendation generation
+        if self.use_llm and self.llm:
+            rec_prompt = ChatPromptTemplate.from_messages([
+                ("system", "You are an expert project management consultant. Generate specific, actionable recommendations based on the project analysis."),
+                ("human", """Project: {project_id}
+Risk Score: {risk_score}/100 ({risk_level})
+Cost Overrun: {cost_overrun}%
+Risk Factors: {risk_factors}
+
+Generate 3-5 specific recommendations with:
+1. Action to take
+2. Priority (HIGH/MEDIUM/LOW)
+3. Detailed description (what, why, how)
+4. Whether it can be automated (true/false)
+
+Respond in JSON format: {{"recommendations": [{{"action": "...", "priority": "...", "description": "...", "automated": true/false}}]}}""")
+            ])
+            
+            try:
+                response = self.llm.invoke(
+                    rec_prompt.format_messages(
+                        project_id=state["project_id"],
+                        risk_score=risk_score,
+                        risk_level=state["risk_analysis"]["risk_level"],
+                        cost_overrun=f"{cost_overrun:.1f}",
+                        risk_factors="; ".join(state["risk_analysis"]["risk_factors"])
+                    )
+                )
+                
+                llm_response = json.loads(response.content)
+                recommendations = llm_response.get("recommendations", [])
+            except Exception as e:
+                # Fallback to rule-based
+                recommendations = self._get_rule_based_recommendations(risk_score, cost_overrun, state)
+        else:
+            # Rule-based fallback
+            recommendations = self._get_rule_based_recommendations(risk_score, cost_overrun, state)
+        
+        state["recommendations"] = recommendations
+        
+        message = AIMessage(content=f"Generated {len(recommendations)} recommendations")
+        state["messages"] = state.get("messages", []) + [message]
+        
+        return state
+    
+    def _get_rule_based_recommendations(self, risk_score: int, cost_overrun: float, state: AgentState) -> list:
+        """Fallback rule-based recommendation generation"""
         recommendations = []
         
         # Risk-based recommendations
@@ -268,12 +364,7 @@ class PortfolioAgent:
                 "automated": True
             })
         
-        state["recommendations"] = recommendations
-        
-        message = AIMessage(content=f"Generated {len(recommendations)} recommendations")
-        state["messages"] = state.get("messages", []) + [message]
-        
-        return state
+        return recommendations
     
     def execute_actions(self, state: AgentState) -> AgentState:
         """
