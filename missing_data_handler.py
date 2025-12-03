@@ -115,9 +115,14 @@ class MissingDataHandler:
         # Impute cost_variance
         if 'cost_variance' not in project_data or project_data.get('cost_variance') is None:
             if history and len(history) > 0:
-                historical_costs = [h.get('cost_variance', 0) for h in history]
-                imputed_data['cost_variance'] = float(np.median(historical_costs)) if historical_costs else 0.0
-                imputation_log['cost_variance'] = f"Historical median ({len(historical_costs)} points)"
+                # Filter out None values
+                historical_costs = [h.get('cost_variance') for h in history if h.get('cost_variance') is not None]
+                if historical_costs:
+                    imputed_data['cost_variance'] = float(np.median(historical_costs))
+                    imputation_log['cost_variance'] = f"Historical median ({len(historical_costs)} points)"
+                else:
+                    imputed_data['cost_variance'] = 5.0
+                    imputation_log['cost_variance'] = "Conservative default (no valid history)"
             else:
                 # Conservative: assume slight overrun
                 imputed_data['cost_variance'] = 5.0
@@ -126,9 +131,14 @@ class MissingDataHandler:
         # Impute success_probability
         if 'success_probability' not in project_data or project_data.get('success_probability') is None:
             if history and len(history) > 0:
-                historical_success = [h.get('success_probability', 0.7) for h in history]
-                imputed_data['success_probability'] = float(np.mean(historical_success)) if historical_success else 0.7
-                imputation_log['success_probability'] = f"Historical mean ({len(historical_success)} points)"
+                # Filter out None values
+                historical_success = [h.get('success_probability') for h in history if h.get('success_probability') is not None]
+                if historical_success:
+                    imputed_data['success_probability'] = float(np.mean(historical_success))
+                    imputation_log['success_probability'] = f"Historical mean ({len(historical_success)} points)"
+                else:
+                    imputed_data['success_probability'] = 0.7
+                    imputation_log['success_probability'] = "Neutral default (no valid history)"
             else:
                 # Neutral default
                 imputed_data['success_probability'] = 0.7
