@@ -21,8 +21,8 @@ CREATE TABLE IF NOT EXISTS benefit_plans (
     UNIQUE(project_id, benefit_category, benefit_subcategory)
 );
 
-CREATE INDEX idx_benefit_plans_project ON benefit_plans(project_id);
-CREATE INDEX idx_benefit_plans_category ON benefit_plans(benefit_category);
+CREATE INDEX IF NOT EXISTS idx_benefit_plans_project ON benefit_plans(project_id);
+CREATE INDEX IF NOT EXISTS idx_benefit_plans_category ON benefit_plans(benefit_category);
 
 -- ============================================================================
 -- BENEFIT ACTUALS
@@ -46,9 +46,9 @@ CREATE TABLE IF NOT EXISTS benefit_actuals (
     FOREIGN KEY(project_id) REFERENCES benefit_plans(project_id)
 );
 
-CREATE INDEX idx_benefit_actuals_project ON benefit_actuals(project_id);
-CREATE INDEX idx_benefit_actuals_category ON benefit_actuals(benefit_category);
-CREATE INDEX idx_benefit_actuals_date ON benefit_actuals(realization_date);
+CREATE INDEX IF NOT EXISTS idx_benefit_actuals_project ON benefit_actuals(project_id);
+CREATE INDEX IF NOT EXISTS idx_benefit_actuals_category ON benefit_actuals(benefit_category);
+CREATE INDEX IF NOT EXISTS idx_benefit_actuals_date ON benefit_actuals(realization_date);
 
 -- ============================================================================
 -- BENEFIT VARIANCE HISTORY
@@ -69,8 +69,8 @@ CREATE TABLE IF NOT EXISTS benefit_variance_history (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX idx_variance_history_project ON benefit_variance_history(project_id);
-CREATE INDEX idx_variance_history_date ON benefit_variance_history(snapshot_date);
+CREATE INDEX IF NOT EXISTS idx_variance_history_project ON benefit_variance_history(project_id);
+CREATE INDEX IF NOT EXISTS idx_variance_history_date ON benefit_variance_history(snapshot_date);
 
 -- ============================================================================
 -- SUCCESS FACTORS LIBRARY
@@ -95,8 +95,8 @@ CREATE TABLE IF NOT EXISTS success_factors (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX idx_success_factors_type ON success_factors(pattern_type);
-CREATE INDEX idx_success_factors_rate ON success_factors(success_rate);
+CREATE INDEX IF NOT EXISTS idx_success_factors_type ON success_factors(pattern_type);
+CREATE INDEX IF NOT EXISTS idx_success_factors_rate ON success_factors(success_rate);
 
 -- ============================================================================
 -- PROJECT LESSONS LEARNED
@@ -118,9 +118,9 @@ CREATE TABLE IF NOT EXISTS project_lessons (
     FOREIGN KEY(related_pattern_id) REFERENCES success_factors(pattern_id)
 );
 
-CREATE INDEX idx_lessons_project ON project_lessons(project_id);
-CREATE INDEX idx_lessons_type ON project_lessons(lesson_type);
-CREATE INDEX idx_lessons_category ON project_lessons(lesson_category);
+CREATE INDEX IF NOT EXISTS idx_lessons_project ON project_lessons(project_id);
+CREATE INDEX IF NOT EXISTS idx_lessons_type ON project_lessons(lesson_type);
+CREATE INDEX IF NOT EXISTS idx_lessons_category ON project_lessons(lesson_category);
 
 -- ============================================================================
 -- BENEFIT ALERTS
@@ -146,9 +146,9 @@ CREATE TABLE IF NOT EXISTS benefit_alerts (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX idx_alerts_project ON benefit_alerts(project_id);
-CREATE INDEX idx_alerts_status ON benefit_alerts(status);
-CREATE INDEX idx_alerts_date ON benefit_alerts(alert_date);
+CREATE INDEX IF NOT EXISTS idx_alerts_project ON benefit_alerts(project_id);
+CREATE INDEX IF NOT EXISTS idx_alerts_status ON benefit_alerts(status);
+CREATE INDEX IF NOT EXISTS idx_alerts_date ON benefit_alerts(alert_date);
 
 -- ============================================================================
 -- PORTFOLIO BENEFIT SUMMARY
@@ -168,7 +168,7 @@ CREATE TABLE IF NOT EXISTS portfolio_benefit_summary (
     UNIQUE(snapshot_date)
 );
 
-CREATE INDEX idx_portfolio_summary_date ON portfolio_benefit_summary(snapshot_date);
+CREATE INDEX IF NOT EXISTS idx_portfolio_summary_date ON portfolio_benefit_summary(snapshot_date);
 
 -- ============================================================================
 -- VIEWS FOR COMMON QUERIES
