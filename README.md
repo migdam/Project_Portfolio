@@ -12,7 +12,43 @@
 
 **Predictive analytics for Project Portfolio Management (PPM) powered by Machine Learning**
 
-[Features](#-features) • [Quick Start](#-quick-start) • [API](#-api) • [Dashboard](#-dashboard) • [Architecture](docs/ARCHITECTURE.md)
+[Features](#-features) • [Quick Start](#-quick-start) • [API](#-api) • [Dashboard](#-dashboard) • [Screenshots](#-screenshots) • [Architecture](docs/ARCHITECTURE.md)
+
+</div>
+
+---
+
+## 📸 Screenshots
+
+<div align="center">
+
+### 🎨 Dashboard Interface
+
+<!-- Add your dashboard screenshot here -->
+<img src="https://via.placeholder.com/800x500/4CAF50/FFFFFF?text=Interactive+Dashboard+-+Coming+Soon" alt="Dashboard" width="800">
+
+*Interactive Streamlit dashboard with real-time predictions and visualizations*
+
+### 🌐 API Documentation
+
+<!-- Add your API docs screenshot here -->
+<img src="https://via.placeholder.com/800x500/2196F3/FFFFFF?text=FastAPI+Swagger+UI+-+Coming+Soon" alt="API" width="800">
+
+*FastAPI interactive documentation with Swagger UI*
+
+### 📊 Portfolio Visualization
+
+<!-- Add your visualization screenshot here -->
+<img src="https://via.placeholder.com/800x500/FF9800/FFFFFF?text=Portfolio+Charts+-+Coming+Soon" alt="Visualizations" width="800">
+
+*Advanced portfolio analytics with Pareto frontiers and risk matrices*
+
+### 🔍 SHAP Explainability
+
+<!-- Add your SHAP screenshot here -->
+<img src="https://via.placeholder.com/800x500/9C27B0/FFFFFF?text=SHAP+Explanations+-+Coming+Soon" alt="SHAP" width="800">
+
+*Model interpretability with SHAP waterfall and summary plots*
 
 </div>
 
