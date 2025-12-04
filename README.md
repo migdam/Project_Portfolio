@@ -1048,6 +1048,108 @@ python demo_integrated_agent.py
 
 ---
 
+### 🎨 Interactive Web UI: Agent at Your Fingertips
+
+**Experience the agent through a modern, interactive dashboard:**
+
+<table>
+<tr>
+<td width="50%">
+
+#### 🖥️ **Streamlit Web Interface**
+
+**Launch in 30 seconds:**
+```bash
+./launch_ui.sh
+# Opens at http://localhost:8501
+```
+
+**Features:**
+- 🎯 **Orchestration Dashboard** - Run full portfolio orchestration
+- 📝 **Idea Evaluation** - Submit ideas, get instant agent routing
+- 📊 **Project Monitoring** - Health check with color-coded status
+- ⚙️ **Configuration** - Multi-site resource capacity
+- 💡 **Recommendations Feed** - Agent-prioritized actions
+- 📊 **Interactive Charts** - Plotly visualizations
+
+**No Code Required** - Point, click, review agent decisions
+
+</td>
+<td width="50%">
+
+#### 🎯 **Use Cases**
+
+**Weekly Portfolio Review (2 minutes):**
+1. Load active projects
+2. Click "Run Full Orchestration"
+3. Review master recommendations
+4. Screenshot for leadership meeting
+
+**Rapid Idea Triage (30 sec/idea):**
+1. Fill out idea form
+2. Click "Evaluate with Agent"
+3. Agent routes with confidence score
+4. Follow up on fast-track items
+
+**Project Health Monitoring (20 sec/project):**
+1. Select project from dropdown
+2. Click "Monitor with Agent"
+3. Review health status (HEALTHY/AT_RISK/CRITICAL)
+4. Escalate critical items
+
+**Quarterly Planning (10 minutes):**
+1. Load all ideas and projects
+2. Configure location resources
+3. Run full orchestration
+4. Use recommendations in planning discussion
+
+</td>
+</tr>
+</table>
+
+**UI Screenshots:**
+```
+🤖 AI Portfolio Agent Orchestrator
+═══════════════════════════════════════════════════════════════
+
+📊 Key Metrics
+┌─────────────────┬─────────────────┬─────────────────┬─────────────────┐
+│ Ideas Evaluated │ Projects        │ Critical Items  │ Total           │
+│       2         │ Monitored: 5    │       1         │ Recommendations │
+│                 │                 │                 │       4         │
+└─────────────────┴─────────────────┴─────────────────┴─────────────────┘
+
+💡 Master Recommendations
+┌────────────────────────────────────────────────────────────────┐
+│ 🔴 [HIGH] FAST_TRACK_APPROVAL                                 │
+│ Expedite approval and resource allocation for IDEA-001         │
+├────────────────────────────────────────────────────────────────┤
+│ ⚠️ [CRITICAL] INTERVENTION_REQUIRED                           │
+│ Immediate executive attention needed for PROJ-103              │
+├────────────────────────────────────────────────────────────────┤
+│ 🟡 [MEDIUM] PORTFOLIO_HEALTH                                  │
+│ Portfolio contains 5 active projects with 2 pending evals      │
+└────────────────────────────────────────────────────────────────┘
+```
+
+**Technical Details:**
+- Built with Streamlit for rapid development
+- Plotly for interactive visualizations
+- Session state management for data persistence
+- Custom CSS for professional styling
+- LLM and rule-based agent modes
+- 609 lines of UI code
+
+**Files:**
+- `ui_agent_orchestrator.py` (609 lines): Main Streamlit app
+- `launch_ui.sh`: One-command launch script
+- `requirements_ui.txt`: UI dependencies (streamlit, plotly, pandas)
+- `UI_DOCUMENTATION.md` (672 lines): Complete user guide
+
+**[📖 Read UI Documentation →](UI_DOCUMENTATION.md)** | **[🚀 Launch UI →](launch_ui.sh)**
+
+---
+
 ### Code Examples
 
 **Dependency Sequencing:**
