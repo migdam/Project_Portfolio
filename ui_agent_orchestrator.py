@@ -387,7 +387,7 @@ with tab1:
                 st.metric("Total Duration", f"{seq_result.get('total_duration_months', 0)} months")
             
             with col2:
-                st.metric("Execution Phases", seq_result.get('execution_phases', []))
+                st.metric("Execution Phases", len(seq_result.get('execution_phases', [])))
             
             with col3:
                 st.metric("Critical Path Length", len(seq_result.get('critical_path', [])))
