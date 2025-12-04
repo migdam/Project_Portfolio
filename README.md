@@ -1107,30 +1107,59 @@ python demo_integrated_agent.py
 </tr>
 </table>
 
-**UI Screenshots:**
-```
-🤖 AI Portfolio Agent Orchestrator
-═══════════════════════════════════════════════════════════════
+---
 
-📊 Key Metrics
-┌─────────────────┬─────────────────┬─────────────────┬─────────────────┐
-│ Ideas Evaluated │ Projects        │ Critical Items  │ Total           │
-│       2         │ Monitored: 5    │       1         │ Recommendations │
-│                 │                 │                 │       4         │
-└─────────────────┴─────────────────┴─────────────────┴─────────────────┘
+### 📸 UI Screenshots
 
-💡 Master Recommendations
-┌────────────────────────────────────────────────────────────────┐
-│ 🔴 [HIGH] FAST_TRACK_APPROVAL                                 │
-│ Expedite approval and resource allocation for IDEA-001         │
-├────────────────────────────────────────────────────────────────┤
-│ ⚠️ [CRITICAL] INTERVENTION_REQUIRED                           │
-│ Immediate executive attention needed for PROJ-103              │
-├────────────────────────────────────────────────────────────────┤
-│ 🟡 [MEDIUM] PORTFOLIO_HEALTH                                  │
-│ Portfolio contains 5 active projects with 2 pending evals      │
-└────────────────────────────────────────────────────────────────┘
-```
+#### 1. Orchestration Dashboard - Full Portfolio View
+
+![Orchestration Dashboard](assets/screenshots/ui_orchestration_dashboard.png)
+
+*Full portfolio orchestration with key metrics, master recommendations, project health, and location assignments*
+
+---
+
+#### 2. Idea Evaluation - AI-Powered Routing
+
+![Idea Evaluation](assets/screenshots/ui_idea_evaluation.png)
+
+*Submit new project ideas and receive instant agent routing decisions with confidence scores*
+
+---
+
+#### 3. Project Health Monitoring
+
+![Project Monitoring](assets/screenshots/ui_project_monitoring.png)
+
+*Real-time project health checks with color-coded status and agent-recommended interventions*
+
+---
+
+#### 4. Master Recommendations Feed
+
+![Master Recommendations](assets/screenshots/ui_recommendations.png)
+
+*Agent-prioritized recommendations with color-coded urgency (HIGH, CRITICAL, MEDIUM)*
+
+---
+
+#### 5. Configuration Panel
+
+![Configuration](assets/screenshots/ui_configuration.png)
+
+*Configure multi-site resource capacity (US/EU/APAC) and global portfolio constraints*
+
+---
+
+#### 6. Sidebar & Agent Status
+
+![Sidebar](assets/screenshots/ui_sidebar.png)
+
+*Agent initialization, status monitoring, and quick actions for loading sample data*
+
+---
+
+> **📷 Note:** Screenshots show the UI with sample data loaded. To capture your own screenshots, see [SCREENSHOT_GUIDE.md](SCREENSHOT_GUIDE.md)
 
 **Technical Details:**
 - Built with Streamlit for rapid development
